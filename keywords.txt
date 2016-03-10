@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map for hcms29xx
+# Syntax Coloring Map for HCMS29xx
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-hcms29xx            KEYWORD1
+HCMS29xx            KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

@@ -11,7 +11,7 @@ Modified:   11 Mar 2010 by Tom Igoe
 Modified:   10 Mar 2016 by Andrew Wyatt
 */
 
-#include <hcms29xx.h>
+#include <HCMS29xx.h>
 
 #define maxStringLength 180  // max string length
 
@@ -26,7 +26,7 @@ Modified:   10 Mar 2016 by Andrew Wyatt
 #define displayLength   8 // number of characters in the display
 
 // create am instance of the LED display:
-hcms29xx myDisplay = hcms29xx(dataPin, registerSelect, clockPin, enable, reset, displayLength);
+HCMS29xx myDisplay = HCMS29xx(dataPin, registerSelect, clockPin, enable, reset, displayLength);
 
 // screen brightness
 int brightness = 15;
