@@ -1,5 +1,5 @@
 /*
-  led-display -- controller library for Avago HCMS-297x displays -- version 0.4
+  hcms29xx -- controller library for Avago HCMS-297x displays -- version 0.4
   
    Copyright (c) 2009 Tom Igoe. Some right reserved.
    
@@ -29,7 +29,7 @@
 */
 
 
-#include "LedDisplay.h"
+#include "hcms29xx.h"
 
 // Pascal Stang's 5x7 font library:
 #include "font5x7.h"
@@ -40,12 +40,12 @@
 /*
  *  Constructor.  Initializes the pins and the instance variables.
  */
-LedDisplay::LedDisplay(uint8_t _dataPin, 
-                       uint8_t _registerSelect, 
-                       uint8_t _clockPin, 
-                       uint8_t _chipEnable, 
-                       uint8_t _resetPin, 
-                       uint8_t _displayLength)
+hcms29xx::hcms29xx(uint8_t _dataPin, 
+                   uint8_t _registerSelect, 
+                   uint8_t _clockPin, 
+                   uint8_t _chipEnable, 
+                   uint8_t _resetPin, 
+                   uint8_t _displayLength)
 {
     // Define pins for the LED display:
     this->dataPin = _dataPin;                   // connects to the display's data in
@@ -70,7 +70,7 @@ LedDisplay::LedDisplay(uint8_t _dataPin,
  *  Initialize the display.
  */
  
-void LedDisplay::begin() {
+void hcms29xx::begin() {
  // set pin modes for connections:
   pinMode(dataPin, OUTPUT);
   pinMode(registerSelect, OUTPUT);
@@ -103,7 +103,7 @@ void LedDisplay::begin() {
  *  Clear the display
  */
  
-void LedDisplay::clear() {
+void hcms29xx::clear() {
  for (int displayPos = 0; displayPos < displayLength; displayPos++) {
     char charToShow = ' ';
       // put the character in the dot register:
@@ -118,7 +118,7 @@ void LedDisplay::clear() {
 /*
  *  set the cursor to the home position (0)
  */
-void LedDisplay::home() {
+void hcms29xx::home() {
     // set the cursor to the upper left corner:
     this->cursorPos = 0;
 }
@@ -126,7 +126,7 @@ void LedDisplay::home() {
 /*
  *  set the cursor anywhere
  */
-void LedDisplay::setCursor(int whichPosition){
+void hcms29xx::setCursor(int whichPosition){
     this->cursorPos = whichPosition;
 }
 
@@ -134,7 +134,7 @@ void LedDisplay::setCursor(int whichPosition){
  *  return the cursor position
  */
  
-int LedDisplay::getCursor() {
+int hcms29xx::getCursor() {
     return this->cursorPos;
 }
 
@@ -144,9 +144,9 @@ int LedDisplay::getCursor() {
  */
  
 #if ARDUINO >= 100
-size_t LedDisplay::write(uint8_t b) {
+size_t hcms29xx::write(uint8_t b) {
 #else
-void LedDisplay::write(uint8_t b) {
+void hcms29xx::write(uint8_t b) {
 #endif
     // make sure cursorPos is on the display:
     if (cursorPos >= 0 && cursorPos < displayLength) {  
@@ -171,7 +171,7 @@ void LedDisplay::write(uint8_t b) {
  */
 
 
-void LedDisplay::scroll(int direction) {
+void hcms29xx::scroll(int direction) {
     clear();
     cursorPos += direction;
     // Loop over the string and take displayLength characters to write to the display:
@@ -202,7 +202,7 @@ void LedDisplay::scroll(int direction) {
  *  set displayString
  */
 
-void LedDisplay::setString(char* _displayString)  {
+void hcms29xx::setString(char* _displayString)  {
     this->displayString = _displayString;
 }
 
@@ -211,7 +211,7 @@ void LedDisplay::setString(char* _displayString)  {
  *  return displayString
  */
 
-char* LedDisplay::getString() {
+char* hcms29xx::getString() {
     return displayString;
 }
 
@@ -221,7 +221,7 @@ char* LedDisplay::getString() {
  */
 
     
-int LedDisplay::stringLength() {
+int hcms29xx::stringLength() {
     return strlen(displayString);
 }   
     
@@ -232,7 +232,7 @@ int LedDisplay::stringLength() {
  */
 
     
-void LedDisplay::setBrightness(uint8_t bright) {
+void hcms29xx::setBrightness(uint8_t bright) {
 
     /*
     Update by andrewzuku (andrew@retrojdm.com)
@@ -286,7 +286,7 @@ void LedDisplay::setBrightness(uint8_t bright) {
  * it just prepares the data:
 */
 
-void LedDisplay::writeCharacter(char whatCharacter, byte whatPosition) {
+void hcms29xx::writeCharacter(char whatCharacter, byte whatPosition) {
   // calculate the starting position in the array.
   // every character has 5 columns made of 8 bits:
   byte thisPosition =  whatPosition * 5;
@@ -299,7 +299,7 @@ void LedDisplay::writeCharacter(char whatCharacter, byte whatPosition) {
 
 
 // This method sends 8 bits to one of the control registers:
-void LedDisplay::loadControlRegister(int dataByte) {
+void hcms29xx::loadControlRegister(int dataByte) {
   // select the control registers:
   digitalWrite(registerSelect, HIGH);
   // enable writing to the display:
@@ -312,7 +312,7 @@ void LedDisplay::loadControlRegister(int dataByte) {
 }
 
 // this method originally sent 320 bits to the dot register: 12_30_09 ML
-void LedDisplay::loadDotRegister() {
+void hcms29xx::loadDotRegister() {
 
   // define max data to send, patch for 4 length displays by KaR]V[aN
   int maxData = displayLength * 5;
@@ -332,7 +332,7 @@ void LedDisplay::loadDotRegister() {
 /*
   version() returns the version of the library:
 */
-int LedDisplay::version(void)
+int hcms29xx::version(void)
 {
   return 4;
 }

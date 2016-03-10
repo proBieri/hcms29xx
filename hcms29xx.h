@@ -1,5 +1,5 @@
 /*
-  led-display -- controller library for Avago HCMS-297x displays -- version 0.4
+  hcms29xx -- controller library for Avago HCMS-297x displays -- version 0.4
   27 Jan 2010 ML: extended a bit to support up to four (4) 8 character displays.
   15 May 2014 AW: alterred setBrightness() to use 50% peak pixel current, and support cascaded displays.
   10 Nov 2014 AW: Moved the dotRegister[] array to be a public variable, this way we manipulate the pixels directly.
@@ -43,8 +43,8 @@
 
  
 // ensure this library description is only included once 
-#ifndef LedDisplay_h
-#define LedDisplay_h 
+#ifndef hcms29xx_h
+#define hcms29xx_h 
 
 // include types & constants of Wiring core API
 #if ARDUINO >= 100
@@ -65,15 +65,15 @@
 
 // library interface description
 
-class LedDisplay : public Print {
+class hcms29xx : public Print {
   public:
     // constructor:
-   LedDisplay(uint8_t _dataPin, 
-              uint8_t _registerSelect, 
-              uint8_t _clockPin, 
-              uint8_t _chipEnable, 
-              uint8_t _resetPin, 
-              uint8_t _displayLength);
+   hcms29xx(uint8_t _dataPin, 
+            uint8_t _registerSelect, 
+            uint8_t _clockPin, 
+            uint8_t _chipEnable, 
+            uint8_t _resetPin, 
+            uint8_t _displayLength);
    
 
     // initializer method:

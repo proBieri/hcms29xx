@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map for LedDisplay
+# Syntax Coloring Map for hcms29xx
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-LedDisplay          KEYWORD1
+hcms29xx            KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
