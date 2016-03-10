@@ -20,7 +20,7 @@ Modified:   10 Mar 2016 by Andrew Wyatt
 #define registerSelect  3 // the display's register select pin 
 #define clockPin        4 // the display's clock pin
 #define enable          5 // the display's chip enable pin
-#define register        6 // the display's reset pin
+#define reset           6 // the display's reset pin
 
 #define displayLength   8 // number of characters in the display
 
