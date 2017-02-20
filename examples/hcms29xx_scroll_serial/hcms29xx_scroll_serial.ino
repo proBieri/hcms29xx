@@ -14,7 +14,7 @@ Modified:   10 Mar 2016 by Andrew Wyatt
 */
 
 #include <WString.h>
-#include <HCMS29xx.h>
+#include <hcms29xx.h>
 
 #define maxStringLength 180  // max string length
 

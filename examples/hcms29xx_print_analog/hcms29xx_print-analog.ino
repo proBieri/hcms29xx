@@ -2,18 +2,16 @@
 HCMS-29xx Display 
 Language: Arduino/Wiring
 
-Writes characters on an Avago HCMS-297x display
+Displays an analog value on an Avago HCMS-297x display.
 
 http://wiring.org.co/learning/reference/String.html
 
 Created:    12 Jun 2008
-Modified:   11 Mar 2010 by Tom Igoe
+Modified:   17 Apr 2009 by Tom Igoe
 Modified:   10 Mar 2016 by Andrew Wyatt
 */
 
-#include <HCMS29xx.h>
-
-#define maxStringLength 180  // max string length
+#include <hcms29xx.h>
 
 // Define pins for the LED display. 
 // You can change these, just re-wire your board:
@@ -25,43 +23,30 @@ Modified:   10 Mar 2016 by Andrew Wyatt
 
 #define displayLength   8 // number of characters in the display
 
-// create am instance of the LED display:
+// create am instance of the LED display library:
 HCMS29xx myDisplay = HCMS29xx(dataPin, registerSelect, clockPin, enable, reset, displayLength);
 
 // screen brightness
 int brightness = 15;
 
-char myString[] = { 'p','r','i','n','t','i','n','g' };
-
 
 void setup() {
   
-    Serial.begin(9600);
-
     // initialize the display library:
     myDisplay.begin();
-    myDisplay.setString("Printing");
-    myDisplay.home();
+    
+    // set the brightness of the display:
     myDisplay.setBrightness(brightness);
+    
+    Serial.begin(9600);
+    Serial.println(myDisplay.version(), DEC);
 }
 
 
 void loop() {
-
-    for (int thisPosition = 0; thisPosition < 8; thisPosition++) {
-        
-        for (int thisChar = ' '; thisChar < 'z'; thisChar++) {
-            
-            myDisplay.write(thisChar);
-            myDisplay.setCursor(thisPosition);
-            delay(3);
-        }
-        
-        myDisplay.write(myString[thisPosition]);
-        delay(10);
-    }
-
-    delay(500);
-    myDisplay.clear();
-    myDisplay.home();
+  
+    // set the cursor to 1:
+    myDisplay.setCursor(1);
+    myDisplay.print("A0: ");
+    myDisplay.print(analogRead(0), DEC);
 }

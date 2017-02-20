@@ -12,7 +12,7 @@ Modified:   11 Mar 2010 by Tom Igoe
 Modified:   10 Mar 2016 by Andrew Wyatt
 */
 
-#include <HCMS29xx.h>
+#include <hcms29xx.h>
 
 // Define pins for the LED display. 
 // You can change these, just re-wire your board:
