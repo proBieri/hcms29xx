@@ -39,7 +39,7 @@
 
 
 // We need one byte per pixel column. Each character is 5 pixels wide, so we need 5 bytes per character.
-#define DOT_REGISTER_BYTES 60 // 60 bytes = 12 characters.
+#define DOT_REGISTER_BYTES 40 // 40 bytes = 12 characters.
 
  
 // ensure this library description is only included once 

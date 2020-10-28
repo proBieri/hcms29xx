@@ -262,9 +262,9 @@ void hcms29xx::setBrightness(uint8_t bright) {
     static const uint8_t RELATIVE_BRIGHTNESS_100    = B11;
 
     // This is a bit of a messy hack, but I didn't want to alter Tom Igoe's library too much to include a "Characters per Display" attribute.
-    uint8_t charsPerDisplay         = 4;
+    uint8_t charsPerDisplay         = 8;
 
-    uint8_t peakCurrentBrightness   = RELATIVE_BRIGHTNESS_31; // %
+    uint8_t peakCurrentBrightness   = RELATIVE_BRIGHTNESS_100; // %
     uint8_t controlRegister         = B01000000 | (peakCurrentBrightness << 4) | bright;
 
     /*
