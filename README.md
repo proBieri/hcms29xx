@@ -1,9 +1,13 @@
 HCMS-29xx Arduino Library
 =========================
 
-An Arduino library for the Avago HCMS-29xx LED Displays (slightly modified by me (Andrew Wyatt) to allow multiples of 4 characters, and direct access to the Dot Register).
+An customized Arduino library for the Avago HCMS-29xx LED Displays
 
-For details on the original version, see http://www.arduino.cc/playground/Main/LedDisplay
+Original Version:
+http://www.arduino.cc/playground/Main/LedDisplay
+
+Fork by Andrew Wyatt
+https://bitbucket.org/retrojdm/hcms29xx
 
 --------------------------------------------------------------------------------
 
